@@ -1,10 +1,29 @@
+require('express-async-errors');
+require('dotenv').config();
+import bodyParser from 'body-parser';
 import express from 'express';
+import cors from 'cors';
+import cookieParser from 'cookie-parser';
+import homepageRoutes from './src/routes/homepage.route';
 
-const app = express();
+const app: express.Application = express();
 
-app.get('/', (req: express.Request, res: express.Response) => {
-    res.send('Hello World!');
-});
+app.use(cookieParser());
+app.use(express.json());
+
+const corsConfig = {
+    credentials: true,
+    origin: true,
+  };
+  app.use(cors(corsConfig));
+  
+  app.use(
+    bodyParser.urlencoded({
+      extended: true,
+    })
+  );
+
+app.use('/', homepageRoutes);
 
 const PORT = process.env.PORT || 5001;
-app.listen(PORT, () => console.log(`Port is currently running on ${PORT}`));
+export const appPort = app.listen(PORT, () => console.log(`Port is currently running on ${PORT}`));
