@@ -7,13 +7,15 @@ jest.mock('../middlewares/winston', () => {
     };
 });
 
+afterAll(() => {
+    appPort.close();
+});
+
 test('GET - / - Success to retrieve homepage endpoint', async () => {
     const res = await request(appPort).get('/');
 
     expect(res.statusCode).toBe(200);
     expect(res.body).toEqual({ message: 'Hello' });
-
-    appPort.close();
 });
 
 jest.mock('nodemailer', () => ({
@@ -28,8 +30,6 @@ test('POST - / - Send Mail fail because of missing req.body', async () => {
     // Check when user doesn't pass any request body.
     expect(res.statusCode).toBe(404);
     expect(res.body).toEqual({ message: 'Request body is required' });
-
-    appPort.close();
 });
 
 test('POST - / -  Send mail successfully', async () => {
@@ -43,6 +43,4 @@ test('POST - / -  Send mail successfully', async () => {
     // Test the send mail function.
     expect(test2.statusCode).toBe(200);
     expect(test2.body).toEqual({ message: 'Email has been successfully send to rd2249619@gmail.com' });
-
-    appPort.close();
 });
