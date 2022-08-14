@@ -1,5 +1,6 @@
-require('express-async-errors');
 require('dotenv').config();
+require('./src/utils/newrelic');
+require('express-async-errors');
 import bodyParser from 'body-parser';
 import express from 'express';
 import cors from 'cors';
