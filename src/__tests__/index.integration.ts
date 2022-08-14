@@ -6,4 +6,6 @@ test('GET - / - Success to retrieve homepage endpoint', async () => {
 
     expect(res.statusCode).toBe(200);
     expect(res.body).toEqual({ message: 'Hello' });
+
+    appPort.close();
 });
