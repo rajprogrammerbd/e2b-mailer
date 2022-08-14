@@ -16,7 +16,7 @@ async function sendEmail(req: express.Request, res: express.Response) {
         } catch (err: any) {
             throw new Error(err);
         }
-    } else res.status(404).send('Request body is required');
+    } else res.status(404).send({ message: 'Request body is required' });
 }
 
 export default {

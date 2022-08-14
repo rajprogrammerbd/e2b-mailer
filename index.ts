@@ -29,4 +29,6 @@ app.use('/', homepageRoutes);
 app.use('/api', emailRoutes);
 
 const PORT = process.env.PORT || 5001;
-export const appPort = app.listen(PORT, () => console.log(`Port currently running on ${PORT}`));
+const appPort = app.listen(PORT, () => console.log(`Port currently running on ${PORT}`));
+
+export default appPort;
