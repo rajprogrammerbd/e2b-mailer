@@ -1,0 +1,9 @@
+{
+  "name": "e2b-mailer",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {},
+  "repository": "https://github.com/rajprogrammerbd/e2b-mailer.git",
+  "author": "Raj Dutta <rd2249619@gmail.com>",
+  "license": "MIT"
+}
