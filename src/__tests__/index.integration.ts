@@ -29,8 +29,6 @@ test('POST - / - Send Mail', async () => {
     expect(res.statusCode).toBe(404);
     expect(res.body).toEqual({ message: 'Request body is required' });
 
-    appPort.close();
-
     // That the function sends the email.
     const test2 = await request(appPort).post('/api/email/send').send({
         to: "rd2249619@gmail.com",
