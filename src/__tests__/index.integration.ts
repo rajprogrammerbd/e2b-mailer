@@ -32,7 +32,7 @@ test('POST - / - Send Mail fail because of missing req.body', async () => {
     expect(res.body).toEqual({ message: 'Request body is required' });
 });
 
-test.skip('POST - / -  Send mail successfully', async () => {
+test('POST - / -  Send mail successfully', async () => {
     // That the function sends the email.
     const test2 = await request(appPort).post('/api/email/send').send({
         to: "rd2249619@gmail.com",
@@ -40,6 +40,7 @@ test.skip('POST - / -  Send mail successfully', async () => {
         html: "<b>Hello World</b>"
     });
 
+    console.log('test2 ', test2);
     // Test the send mail function.
     expect(test2.statusCode).toBe(200);
     expect(test2.body).toEqual({ message: 'Email has been successfully send to rd2249619@gmail.com' });
