@@ -17,13 +17,13 @@ function sendEmails(body: RequestEmailSendBodyType): Promise<any> {
         const transporter = nodemailer.createTransport({
             service : 'hotmail',
             auth : {
-                user: 'rajkpi@outlook.com',
-                pass: 'Casino@123'
+                user: process.env.USER_MAIL,
+                pass: process.env.USER_PASSWORD
             }
         });
 
         const options = {
-            from : 'rajkpi@outlook.com', 
+            from : process.env.USER_MAIL, 
             to: to, 
             subject: title,
         } as OptionsType;
