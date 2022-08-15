@@ -7,12 +7,6 @@ jest.mock('../middlewares/winston', () => {
     };
 });
 
-jest.mock('nodemailer', () => ({
-    createTransport: jest.fn().mockReturnValue({
-        sendMail: jest.fn().mockResolvedValueOnce({}),
-    })
-}));
-
 afterAll(() => {
     appPort.close();
 });
@@ -36,12 +30,10 @@ test('POST - / -  Send mail successfully', async () => {
     // That the function sends the email.
     const test2 = await request(appPort).post('/api/email/send').send({
         to: "rd2249619@gmail.com",
-        title: "my title",
-        html: "<b>Hello World</b>"
+        title: "Send email for automation testing",
+        html: "<b>Test has done successfully.</b>"
     });
 
-    console.log('test2 ', test2);
-    // Test the send mail function.
     expect(test2.statusCode).toBe(200);
     expect(test2.body).toEqual({ message: 'Email has been successfully send to rd2249619@gmail.com' });
 });

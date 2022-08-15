@@ -33,14 +33,11 @@ function sendEmails(body: RequestEmailSendBodyType): Promise<any> {
     
         const res = transporter.sendMail(options);
         res.then(() => resolve({ message: `Email has been successfully send to ${to}` })).catch(err => {
+            console.log('transporter  ', err);
             logger.error(err);
             reject({ message: `Failed to send an email to ${to}` });
         });
     });
-
-
-
-    return Promise.resolve({ message: 'Hello' });
 }
   
 export default {
