@@ -13,6 +13,13 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
+    env:
+      MONGODB_ACCESS_URL: ${{ secrets.MONGODB_ACCESS_URL }}
+      PORT: ${{ secrets.PORT }}
+      NEW_RELIC_APP_NAME: ${{ secrets.NEW_RELIC_APP_NAME }}
+      NEW_RELIC_LICENSE_KEY: ${{ secrets.NEW_RELIC_LICENSE_KEY }}
+      USER_MAIL: ${{ secrets.USER_MAIL }}
+      USER_PASSWORD: ${{ secrets.USER_PASSWORD }}
 
     strategy:
       matrix:
