@@ -5,8 +5,13 @@ import bodyParser from 'body-parser';
 import express from 'express';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
+
+// Import all routes
 import homepageRoutes from './src/routes/homepage.route';
 import emailRoutes from './src/routes/email.route';
+
+// Import middlewares
+import isAccessible from './src/middlewares/isAccessible';
 
 const app: express.Application = express();
 
@@ -14,16 +19,18 @@ app.use(cookieParser());
 app.use(express.json());
 
 const corsConfig = {
-    credentials: true,
-    origin: true,
-  };
-  app.use(cors(corsConfig));
-  
-  app.use(
-    bodyParser.urlencoded({
-      extended: true,
-    })
-  );
+  credentials: true,
+  origin: true,
+};
+app.use(cors(corsConfig));
+
+app.use(
+  bodyParser.urlencoded({
+    extended: true,
+  })
+);
+
+app.use(isAccessible);
 
 app.use('/', homepageRoutes);
 app.use('/api', emailRoutes);
