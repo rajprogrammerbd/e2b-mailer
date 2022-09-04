@@ -13,6 +13,14 @@ import emailRoutes from './src/routes/email.route';
 // Import middlewares
 import isAccessible from './src/middlewares/isAccessible';
 
+process.on('uncaughtException', err => {
+  console.log(`Uncaught Exception logged:`, err, err.stack);
+});
+
+process.on('unhandledRejection', error => {
+  console.error('unhandledRejection', error, error);
+});
+
 const app: express.Application = express();
 
 app.use(cookieParser());
